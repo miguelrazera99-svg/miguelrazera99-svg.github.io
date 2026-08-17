@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crédito pessoal no Brasil: expansão, inadimplência e defasagens · Miguel Razera</title>
+  <meta name="description" content="Análise descritiva do crédito pessoal não consignado no Brasil entre março de 2011 e dezembro de 2025.">
+  <meta property="og:title" content="Crédito pessoal no Brasil: expansão, inadimplência e defasagens">
+  <meta property="og:description" content="Dados do Banco Central, cenários de risco, testes de robustez e associações defasadas.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body class="article-detail-page">
+  <header class="minimal-header"><nav class="minimal-nav" aria-label="Navegação principal"><div class="nav-pages"><a class="nav-tab" href="/">Home</a><a class="nav-tab active" href="/blog/">Blog</a></div><div class="nav-actions"><a href="https://github.com/miguelrazera99-svg" target="_blank" rel="noreferrer" aria-label="GitHub">GH</a><a class="mail-icon" href="mailto:miguelrazera99@gmail.com" aria-label="Enviar e-mail">✉</a><span>PT</span><a class="search-icon" href="/blog/#search" aria-label="Pesquisar no blog">⌕</a></div></nav></header>
+  <main class="article-page">
+    <header class="article-hero shell">
+      <div class="article-kicker-row"><span>Análise econômica</span><span>12 min de leitura</span></div>
+      <h1>Crédito pessoal no Brasil: expansão, inadimplência e defasagens</h1>
+      <p class="article-deck">Uma leitura descritiva de demanda, risco e preço no crédito pessoal não consignado — e do que os dados realmente permitem concluir.</p>
+      <div class="article-meta"><span>Por Miguel Razera</span><span>Publicado em 16 de agosto de 2026</span><span>Dados: mar/2011–dez/2025</span></div>
+      <div class="tag-row article-tags"><span>Economia</span><span>Crédito</span><span>Python</span><span>BCB</span></div>
+    </header>
+    <div class="article-rule"></div>
+    <div class="article-layout shell">
+      <aside class="toc" aria-label="Nesta página"><p>Nesta página</p><a href="#resumo">Resumo</a><a href="#pergunta">Pergunta</a><a href="#dados">Dados e método</a><a href="#fluxo-estoque">Fluxo × estoque</a><a href="#resultados">Resultados</a><a href="#defasagens">Defasagens</a><a href="#robustez">Robustez</a><a href="#conclusao">Conclusão</a><a href="#limitacoes">Limitações</a></aside>
+      <article class="article-body">
+        <section id="resumo" class="lead-section">
+          <p class="dropcap">Em dezembro de 2025, o mercado exibiu crescimento nominal dos volumes e piora relevante da inadimplência. Pela regra principal do projeto, o mês foi classificado como <strong>deterioração do risco</strong>. A leitura é descritiva: não atribui a piora às novas concessões.</p>
+          <div class="key-numbers">
+            <div><span>Concessões</span><strong>R$ 21,8 bi</strong><small>+6,0% em 12 meses, nominal</small></div>
+            <div><span>Inadimplência</span><strong>9,16%</strong><small>+2,70 p.p. em 12 meses</small></div>
+            <div><span>Juros</span><strong>6,65% a.m.</strong><small>prêmio bruto de 5,43 p.p. sobre a Selic</small></div>
+            <div><span>Saldo</span><strong>R$ 388,4 bi</strong><small>+18,9% em 12 meses, nominal</small></div>
+          </div>
+        </section>
+        <section id="pergunta">
+          <p class="section-label">01 · PERGUNTA DE NEGÓCIO</p><h2>Quando a expansão acontece sem deterioração observada?</h2>
+          <p>O objetivo é reconhecer períodos de expansão, alerta, aperto ou recuperação combinando o crescimento real das concessões com a variação da inadimplência. A regra organiza a leitura histórica; não é uma classificação oficial do Banco Central nem um modelo de aprovação de crédito.</p>
+          <blockquote>O foco não é prever o comportamento de um cliente, mas construir uma visão agregada, reproduzível e comunicável do mercado.</blockquote>
+        </section>
+        <section id="dados">
+          <p class="section-label">02 · DADOS E MÉTODO</p><h2>178 meses, sem lacunas ou duplicidades</h2>
+          <p>A base reúne sete séries mensais do Sistema Gerenciador de Séries Temporais do BCB. O recorte histórico vai de março de 2011 a dezembro de 2025. Concessões e saldo são corrigidos pelo IPCA, e as variações em 12 meses são priorizadas para reduzir a influência da sazonalidade.</p>
+          <div class="method-grid">
+            <div><span>01</span><strong>Coleta</strong><p>API SGS, validação de respostas, datas e valores.</p></div><div><span>02</span><strong>Tratamento</strong><p>Consolidação mensal, IPCA e médias móveis.</p></div><div><span>03</span><strong>Classificação</strong><p>Cenários por crescimento real e risco.</p></div><div><span>04</span><strong>Validação</strong><p>Defasagens, robustez e alternativa sem look-ahead.</p></div>
+          </div>
+          <div class="formula-card"><p>INDICADORES CENTRAIS</p><code>concessões reais = concessões nominais × IPCA final ÷ IPCA do mês</code><code>variação da inadimplência = taxa(t) − taxa(t−12)</code><code>prêmio bruto sobre a Selic = juros do crédito − Selic mensal</code></div>
+          <p class="note">O último indicador é um <strong>diferencial bruto</strong>. Ele não corresponde ao spread bancário oficial, pois não incorpora todos os custos, riscos e componentes da intermediação.</p>
+        </section>
+        <section id="fluxo-estoque">
+          <p class="section-label">03 · INTERPRETAÇÃO</p><h2>Concessões são fluxo; inadimplência é estoque</h2>
+          <div class="comparison-card"><div><span>FLUXO</span><h3>Concessões</h3><p>Valor das novas operações realizadas em cada mês.</p></div><div class="comparison-arrow">→</div><div><span>ESTOQUE</span><h3>Inadimplência</h3><p>Característica da carteira acumulada, formada em meses anteriores.</p></div></div>
+          <p>Essa diferença impede uma leitura instantânea de causa e efeito. Uma mudança nas originações pode se associar ao risco apenas depois de algum tempo — e ambos também respondem a renda, emprego, juros, composição da carteira e choques macroeconômicos.</p>
+        </section>
+        <section id="resultados">
+          <p class="section-label">04 · RESULTADOS</p><h2>O valor nominal cresceu mais do que o poder de compra</h2>
+          <p>A comparação entre crescimento nominal e real evita confundir inflação com expansão econômica. É o crescimento real suavizado que entra na regra de cenários.</p>
+          <figure class="chart-frame"><iframe src="/figures/crescimento-nominal-real.html" title="Crescimento nominal e real das concessões e do saldo" loading="lazy"></iframe><figcaption>Variações em 12 meses. Passe o cursor sobre as séries para ver os valores.</figcaption></figure>
+          <p>No fechamento de 2025, a inadimplência do não consignado atingiu 9,16%, contra 2,81% no consignado — um diferencial de 6,35 p.p. O consignado funciona aqui somente como <strong>benchmark descritivo</strong>: suas regras, garantias e composição de clientes são diferentes.</p>
+        </section>
+        <section id="defasagens">
+          <p class="section-label">05 · DEFASAGENS</p><h2>As associações aparecem mais fortes em horizontes longos</h2>
+          <p>A correlação de Pearson compara o crescimento real das concessões no mês com a variação da inadimplência 3, 6, 9 e 12 meses à frente. Ela cresce nos horizontes de 9 e 12 meses, mas permanece apenas uma associação descritiva.</p>
+          <div class="lag-chart" role="img" aria-label="Correlações de Pearson por defasagem">
+            <div class="lag-row"><span>3 meses</span><div class="lag-track"><i class="negative" style="width:3%"></i></div><strong>−0,027</strong><small>n=161</small></div>
+            <div class="lag-row"><span>6 meses</span><div class="lag-track"><i style="width:17.6%"></i></div><strong>0,176</strong><small>n=158</small></div>
+            <div class="lag-row"><span>9 meses</span><div class="lag-track"><i style="width:33.9%"></i></div><strong>0,339</strong><small>n=155</small></div>
+            <div class="lag-row"><span>12 meses</span><div class="lag-track"><i style="width:38.5%"></i></div><strong>0,385</strong><small>n=152</small></div>
+          </div>
+          <div class="interpretation-box"><strong>Como ler:</strong> a maior correlação, de 0,385 em 12 meses, não demonstra que expansão do crédito cause inadimplência. Tendências comuns, política monetária e mudanças macroeconômicas podem afetar as duas séries.</div>
+        </section>
+        <section id="robustez">
+          <p class="section-label">06 · ROBUSTEZ E TEMPO REAL</p><h2>O diagnóstico resiste a parâmetros alternativos?</h2>
+          <p>A classificação principal usa média móvel de 3 meses e percentil neutro de 20%. Foram testadas combinações com percentis de 10%, 20% e 30% e médias móveis de 3 e 6 meses.</p>
+          <div class="table-wrap"><table><thead><tr><th>Média móvel</th><th>Percentil</th><th>Concordância</th></tr></thead><tbody><tr><td>3 meses</td><td>10%</td><td>85,4%</td></tr><tr class="reference-row"><td>3 meses</td><td>20%</td><td>100,0% · referência</td></tr><tr><td>3 meses</td><td>30%</td><td>91,5%</td></tr><tr><td>6 meses</td><td>10%</td><td>82,0%</td></tr><tr><td>6 meses</td><td>20%</td><td>90,7%</td></tr><tr><td>6 meses</td><td>30%</td><td>85,7%</td></tr></tbody></table></div>
+          <h3>Sem olhar o futuro</h3><p>Um limite calculado com a amostra completa contém informação que não estava disponível em cada data histórica. Por isso, a versão retrospectiva foi comparada a uma janela expansiva que utiliza apenas observações anteriores. Entre 140 meses comparáveis, as duas leituras concordaram em <strong>95,7%</strong> dos casos.</p>
+          <figure class="chart-frame timeline-frame"><iframe src="/figures/linha-tempo-cenarios.html" title="Linha do tempo dos cenários de crédito" loading="lazy"></iframe><figcaption>A pandemia é destacada como choque extraordinário, sem atribuição causal.</figcaption></figure>
+        </section>
+        <section id="conclusao">
+          <p class="section-label">07 · CONCLUSÃO</p><h2>O dado mais recente pede cautela, não uma história causal</h2>
+          <p>Dezembro de 2025 combina avanço nominal das concessões e do saldo com alta expressiva da inadimplência. A regra, baseada em termos reais, classifica o mês como deterioração do risco. O resultado é útil para monitoramento e comunicação, mas não identifica qual choque produziu a mudança.</p>
+          <div class="conclusion-card"><span>LEITURA EXECUTIVA</span><p>O mercado permaneceu ativo, porém o risco do estoque aumentou. A associação mais alta em 12 meses reforça a importância de acompanhar defasagens, sem transformar correlação em causalidade.</p></div>
+          <div class="article-actions"><a class="button button-primary" href="https://credito-inadimplencia-bcb.streamlit.app/" target="_blank" rel="noreferrer">Abrir dashboard ↗</a><a class="button button-secondary" href="https://github.com/miguelrazera99-svg/analise-inadimplencia-credito-pessoal" target="_blank" rel="noreferrer">Ver código no GitHub ↗</a></div>
+        </section>
+        <section id="limitacoes" class="limitations">
+          <p class="section-label">08 · LIMITAÇÕES</p><h2>O que esta análise não pretende fazer</h2>
+          <ul><li>Não estima causalidade, risco individual, LGD ou perda esperada.</li><li>Usa dados agregados, não representativos de uma instituição específica.</li><li>As variações em 12 meses mitigam sazonalidade, mas não provam estacionariedade.</li><li>Os cenários dependem da faixa neutra e da janela de suavização escolhidas.</li><li>O recorte termina em dezembro de 2025 e não é atualizado automaticamente.</li></ul>
+          <p class="source-note">Fonte: séries públicas do Banco Central do Brasil. Projeto educacional de portfólio; não constitui recomendação de crédito, investimento ou política comercial.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
