@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog · Miguel Razera</title>
+  <meta name="description" content="Projetos e exercícios de economia e análise de dados de Miguel Razera.">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/site.js" defer></script>
+</head>
+<body class="blog-page">
+  <header class="minimal-header">
+    <nav class="minimal-nav" aria-label="Navegação principal">
+      <div class="nav-pages">
+        <a class="nav-tab" href="/">Home</a>
+        <a class="nav-tab active" href="/blog/" aria-current="page">Blog</a>
+      </div>
+      <div class="nav-actions">
+        <a href="https://github.com/miguelrazera99-svg" target="_blank" rel="noreferrer" aria-label="GitHub">GH</a>
+        <a class="mail-icon" href="mailto:miguelrazera99@gmail.com" aria-label="Enviar e-mail">✉</a>
+        <span aria-label="Idioma português">PT</span>
+        <a class="search-icon" href="#search" aria-label="Pesquisar no blog">⌕</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-main">
+    <div class="network-background" aria-hidden="true"></div>
+    <div class="blog-shell">
+      <section class="posts-area">
+        <h1>Blog</h1>
+        <label class="blog-search" id="search">
+          <span class="visually-hidden">Pesquisar publicações</span>
+          <input type="search" placeholder="Pesquisar publicações" autocomplete="off" data-blog-search>
+        </label>
+
+        <div class="post-grid" data-post-grid>
+          <article class="blog-card" data-post="crédito python bcb séries temporais inadimplência economia">
+            <a href="/artigos/credito-pessoal/">
+              <h2>Crédito pessoal no Brasil: expansão, inadimplência e defasagens</h2>
+              <div class="compact-tags"><span>CRÉDITO</span><span>PYTHON</span><span>BCB</span><span>SÉRIES TEMPORAIS</span></div>
+              <p>Análise descritiva de demanda, risco e preço no crédito pessoal não consignado, com dados públicos do Banco Central do Brasil.</p>
+              <time datetime="2026-08-16">AUG 16, 2026</time>
+            </a>
+          </article>
+        </div>
+
+        <p class="no-results" data-no-results hidden>Nenhuma publicação encontrada.</p>
+      </section>
+
+      <aside class="categories" aria-label="Categorias">
+        <h2>Categories</h2>
+        <a href="#search" data-category="crédito">credit <span>(1)</span></a>
+        <a href="#search" data-category="python">python <span>(1)</span></a>
+        <a href="#search" data-category="economia">economics <span>(1)</span></a>
+        <a href="#search" data-category="séries temporais">time series <span>(1)</span></a>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
